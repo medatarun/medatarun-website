@@ -1,210 +1,501 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
+import Image from "astro/components/Image.astro";
+import logo from '../../public/favicon/web-app-manifest-512x512.png';
+import homepageSchema from "../assets/homepage-schema.svg"
+const resourceLinks = [
+    {
+        label: 'Documentation',
+        href: 'https://docs.medatarun.com',
+        description: 'Install, learn the concepts, and follow the quickstart.'
+    },
+    {
+        label: 'Source code',
+        href: 'https://github.com/medatarun/medatarun',
+        description: 'Dive into the repository, contribute, or reuse building blocks.'
+    },
+    {
+        label: 'Discord',
+        href: 'https://discord.gg/626262',
+        description: 'Discuss data models, use cases, and design decisions.'
+    }
+];
+
+const adoptionScenarios = [
+    'Teams disagree on definitions.',
+    'Governance is scattered across static documents.',
+    'AI starts consuming data and “guessing” becomes a risk.'
+];
 ---
 
-<div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main>
-		<section id="hero">
-			<a href="https://astro.build"
-				><img src={astroLogo.src} width="115" height="48" alt="Astro Homepage" /></a
-			>
-			<h1>
-				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
-			</h1>
-			<section id="links">
-				<a class="button" href="https://docs.astro.build">Read our docs</a>
-				<a href="https://astro.build/chat"
-					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
-						><path
-							fill="currentColor"
-							d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"
-						></path></svg
-					>
-				</a>
-			</section>
-		</section>
-	</main>
+<section class="hero">
+    <div class="container hero__content">
+        <div style={{display: "grid", gridTemplateColumns: "5em 1fr", gap: "2rem"}}>
+            <div>
+                <Image src={logo} alt="Medatarun logo" style={{width: "100%", height: "auto", borderRadius: "1em"}}/>
+            </div>
+            <div>
+                <h1>Medatarun</h1>
+                <h2>An open source system to define and share explicit data models across teams and tools.</h2>
+                <p class="lede">Making data meaning explicit, so teams and AI can rely on it.</p>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:2rem; margin-left:auto; margin-right: auto; width: 40em; max-width: 100%;">
+            <Image src={homepageSchema} alt="Schema diagram of Medatarun"
+                   style={{backgroundColor: "transparent", width: "100%", height: "auto"}}/>
+        </div>
+        <div class="hero__actions">
+            <a class="button button--primary" href="https://docs.medatarun.com/docs/intro">Documentation &
+                Quickstart</a>
+            <a class="button button--ghost" href="https://github.com/medatarun/medatarun">Explore GitHub</a>
+        </div>
+    </div>
+</section>
 
-	<a href="https://astro.build/blog/astro-5/" id="news" class="box">
-		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
-			><path
-				d="M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z"
-				fill="#111827"></path></svg
-		>
-		<h2>What's New in Astro 5.0?</h2>
-		<p>
-			From content layers to server islands, click to learn more about the new features and
-			improvements in Astro 5.0
-		</p>
-	</a>
-</div>
+<main class="page">
+    <section class="section" id="real-issue">
+        <div class="container">
+            <div class="section__header">
+                <h2>Why Medatarun</h2>
+            </div>
+            <div>
+
+                <p>Most data stacks focus on storage, processing, and delivery.
+                    Governance focuses on rules, ownership, and processes.
+                    Documentation lives in tools that are rarely shared or enforced.</p>
+
+                <p>What is missing is a single place where data meaning itself is defined,
+                    explicitly, structurally, and in a way that both humans and machines can use.</p>
+
+                <p>This gap shows up differently depending on who you are:</p>
+
+                <div class="">
+                    <ul>
+                        <li>For CIOs, CTOs, and data leaders, it creates fragile systems and constant alignment work.
+                        </li>
+                        <li>For business teams, it leads to unclear definitions, conflicting indicators, low trust,
+                            communication is hard with IT.
+                        </li>
+                        <li>For AI initiatives, it results in systems that guess instead of reasoning.</li>
+                    </ul>
+                </div>
+
+                <p>The problem is not data, tools, or infrastructure.
+                    It is the absence of a shared, explicit and living reference for data meaning.</p>
+
+                <p>Static documentation has no operational value. That’s why it fails.</p>
+
+                <p>Medatarun makes data models operable.</p>
+
+                <p><i>If you want the full reasoning, <a
+                        href="https://docs.medatarun.com/docs/resources/problem_en">you can read the complete problem
+                    statement.</a></i></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section muted" id="what-medatarun-does">
+
+        <div class="container">
+            <div class="section__header">
+                <h2>What Medatarun is</h2>
+            </div>
+            <div class="split">
+                <div>
+                    <p>
+                        Medatarun is an open source software that manages data models as explicit,
+                        shared artifacts instead of leaving them implicit in code, or spread across
+                        dashboards, Excel, Word files or wikis.
+                    </p>
+                    <p>
+                        These models describe entities, relationships, attributes, rules, and operations
+                        that define the meaning of data.
+                    </p>
+                    <p>Everything can be tagged and fully documented.</p>
+                </div>
+
+                <div class="pill-list">
+                    <p>Medatarun exposes these models through:</p>
+                    <ul>
+                        <li>A user interface to explore, enrich and discuss them</li>
+                        <li>APIs and CLI tools for developers and tools</li>
+                        <li>Structured access (MCP) for AI agents</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <p>Medatarun does not store business data and does not replace your data stack.</p>
+                    <p>
+                        It provides a concrete software layer where data meaning is defined,
+                        enriched, queried, and shared by humans and tools.
+                    </p>
+                </div>
+            </div>
+            <div>
+                <p>
+                    Medatarun is built with a plugin system.
+                    With plugins, you and your teams can add domain-specific commands, import or sync models from live
+                    systems,
+                    and connect and relate models to databases, alerting systems, and automated workflows.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="section" id="why-now">
+        <div class="container split">
+            <div>
+                <h2>When Medatarun becomes useful</h2>
+            </div>
+            <div>
+                <p>It becomes relevant:</p>
+                <ul class="list">
+                    <li>when teams disagree on data definitions,</li>
+                    <li>when governance is done in scattered documents,</li>
+                    <li>when AI starts consuming data and “guessing” becomes a risk.</li>
+                </ul>
+                <p>In these situations, making data meaning explicit becomes a prerequisite.</p>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="using">
+        <div class="container split">
+            <div>
+                <h2>Working with Medatarun</h2>
+                <p>Use it when structure and meaning become the bottleneck.</p>
+                <p>
+                    Medatarun is open source and early-stage.
+                    It is not a turnkey product, but a tool used during
+                    your analytics, development, governance and AI projects.
+                </p>
+                <p>
+                    I’m an independent interim CTO/CIO (seij).
+                    In missions, Medatarun is one of the tools I use when a shared,
+                    explicit data model is the missing piece.
+                </p>
+                <p>
+                    This work typically happens upstream:
+                    to align business and IT, reduce ambiguity, and de-risk data or AI initiatives.
+                </p>
+                <p>
+                    If you want to discuss your context:
+                    <a href="https://www.seij.net">https://www.seij.net</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section" id="explore">
+        <div class="container">
+            <div class="section__header">
+                <p class="section__eyebrow">Explore Medatarun</p>
+                <h2>Start learning, building, and discussing.</h2>
+            </div>
+
+            <div class="card-grid resources">
+                {resourceLinks.map((resource) => (
+                        <a class="card resource-card" href={resource.href} target="_blank" rel="noreferrer">
+                            <div class="resource-card__label">{resource.label}</div>
+                            <p>{resource.description}</p>
+                            <span class="resource-card__link">Visit {resource.label}</span>
+                        </a>
+                ))}
+            </div>
+        </div>
+    </section>
+
+</main>
 
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
-	}
+    :global(body) {
+        margin: 0;
+        font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial,
+        sans-serif;
+        background: #0c0d11;
+        color: #0f1b36;
+    }
 
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
-	}
+    :global(main) {
+        margin: 0;
+    }
 
-	main {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-	}
+    :global(#root) {
+        min-height: 100vh;
+    }
 
-	#hero {
-		display: flex;
-		align-items: start;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
-	}
+    :root {
+        --hero-bg: radial-gradient(circle at 0% 0%, #101727, #05070d 60%);
+        --hero-panel: rgba(7, 10, 20, 0.8);
+        --primary: #3578e5;
+        --surface: #ffffff;
+        --muted-surface: #f7f8fb;
+        --border: #e3e7f2;
+        --text: #0f1b36;
+        --text-muted: #5a6070;
+        --radius: 16px;
+        --shadow: 0 25px 70px rgba(5, 8, 20, 0.35);
+        --shadow-soft: 0 10px 40px rgba(15, 27, 54, 0.1);
+    }
 
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
-	}
+    a {
+        color: var(--primary);
+        text-decoration: none;
+    }
 
-	#links {
-		display: flex;
-		gap: 16px;
-	}
+    a:hover {
+        text-decoration: underline;
+    }
 
-	#links a {
-		display: flex;
-		align-items: center;
-		padding: 10px 12px;
-		color: #111827;
-		text-decoration: none;
-		transition: color 0.2s;
-	}
+    .hero {
+        background: var(--hero-bg);
+        color: #edf1ff;
+        padding: 5rem 1.5rem 4rem;
+        position: relative;
+        overflow: hidden;
+    }
 
-	#links a:hover {
-		color: rgb(78, 80, 86);
-	}
+    .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle, rgba(53, 120, 229, 0.25), transparent 60%);
+        filter: blur(50px);
+    }
 
-	#links a svg {
-		height: 1em;
-		margin-left: 8px;
-	}
+    .hero__content {
+        position: relative;
+        z-index: 1;
+        max-width: 960px;
+    }
 
-	#links a.button {
-		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-		border-radius: 10px;
-	}
+    .hero__statements {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+    }
 
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
-	}
+    .hero__statements p {
+        margin: 0;
+        padding: 1rem 1.25rem;
+        background: var(--hero-panel);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: rgba(237, 241, 255, 0.85);
+    }
 
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin: 0;
-	}
+    .hero__actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        justify-content: center;
+    }
 
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
-	}
+    .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 0.85rem 1.8rem;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border: 1px solid transparent;
+        transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+    }
 
-	p {
-		color: #4b5563;
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
-	}
+    .button:hover {
+        transform: translateY(-1px);
+        text-decoration: none;
+    }
 
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
-	}
+    .button--primary {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 15px 30px rgba(53, 120, 229, 0.3);
+    }
 
-	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
-	}
+    .button--ghost {
+        background: transparent;
+        color: #edf1ff;
+        border-color: rgba(255, 255, 255, 0.2);
+    }
 
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
+    .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.8rem;
+        color: rgba(237, 241, 255, 0.75);
+        margin-bottom: 0.75rem;
+    }
 
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
+    .lede {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        color: rgba(237, 241, 255, 0.85);
+    }
 
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
-	}
+    .page {
+        background: #f5f6fb;
+        color: var(--text);
+    }
 
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
-		}
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
 
-		#hero {
-			display: block;
-			padding-top: 10%;
-		}
+    .section {
+        padding: 4rem 0;
+        background: var(--surface);
+    }
 
-		#links {
-			flex-wrap: wrap;
-		}
+    .section.muted {
+        background: var(--muted-surface);
+    }
 
-		#links a.button {
-			padding: 14px 18px;
-		}
+    .section + .section {
+        border-top: 1px solid var(--border);
+    }
 
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
+    .section__eyebrow {
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        margin-bottom: 0.75rem;
+    }
 
-		h1 {
-			line-height: 1.5;
-		}
-	}
+    .section__header {
+        max-width: 720px;
+        margin-bottom: 2rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+        margin: 0 0 1rem;
+        line-height: 1.2;
+    }
+
+    h1 {
+        font-size: clamp(2.25rem, 4vw, 3rem);
+    }
+
+    h2 {
+        font-size: clamp(1.75rem, 3vw, 2.4rem);
+    }
+
+    p {
+        margin: 0 0 1rem;
+        color: var(--text);
+        line-height: 1.7;
+    }
+
+    .split {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+        align-items: start;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-soft);
+    }
+
+    .card h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .section__footer {
+        margin-top: 2.5rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .pill-list {
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-soft);
+    }
+
+    .pill-list ul {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .pill-list li {
+        background: #eff3ff;
+        border-radius: 999px;
+        padding: 0.4rem 1rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .list {
+        padding-left: 1.25rem;
+        margin: 0;
+    }
+
+    .resources .card {
+        background: linear-gradient(180deg, #ffffff 0%, #f7f8fb 100%);
+    }
+
+    .resource-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .resource-card__label {
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    .resource-card__link {
+        font-weight: 600;
+        color: var(--primary);
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 720px) {
+        .hero {
+            padding-top: 4rem;
+        }
+
+        .hero__actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+    }
 </style>
