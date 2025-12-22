@@ -2,6 +2,8 @@
 import Image from "astro/components/Image.astro";
 import logo from '../../public/favicon/web-app-manifest-512x512.png';
 import homepageSchema from "../assets/homepage-schema.svg"
+import imageWhy from "../assets/homepage-why-image.png"
+import imageAttributes from "../assets/homepage-attributes-sample.png"
 const resourceLinks = [
     {
         label: 'Documentation',
@@ -58,7 +60,11 @@ const adoptionScenarios = [
                 <h2>Why Medatarun</h2>
             </div>
             <div>
+            <div>
 
+            </div>
+            <div>
+                <Image src={imageWhy} style="width:30em; height:auto; float:right;" alt="Uncomprehensive table columns" />
                 <p>Most data stacks focus on storage, processing, and delivery.
                     Governance focuses on rules, ownership, and processes.
                     Documentation lives in tools that are rarely shared or enforced.</p>
@@ -91,12 +97,19 @@ const adoptionScenarios = [
                     statement.</a></i></p>
             </div>
         </div>
+        </div>
     </section>
+
+    <div style="text-align:center; margin-left:auto; margin-right: auto; color:var(--hero-color); background:var(--hero-bg); padding:2em;">
+        <Image src={imageAttributes} style="border:1px solid #aaa; margin:2em; width:50%; height:auto;" alt="Uncomprehensive table columns" />
+        <div>Now, with Medatarun.</div>
+    </div>
+
 
     <section class="section muted" id="what-medatarun-does">
 
         <div class="container">
-            <div class="section__header">
+            <div class="section__header" style="display:flex; width:100%; justify-content:space-between; align-items:center;">
                 <h2>What Medatarun is</h2>
             </div>
             <div class="split">
@@ -228,6 +241,7 @@ const adoptionScenarios = [
     :root {
         --hero-bg: radial-gradient(circle at 0% 0%, #101727, #05070d 60%);
         --hero-panel: rgba(7, 10, 20, 0.8);
+        --hero-color: #edf1ff;
         --primary: #3578e5;
         --surface: #ffffff;
         --muted-surface: #f7f8fb;
@@ -250,7 +264,7 @@ const adoptionScenarios = [
 
     .hero {
         background: var(--hero-bg);
-        color: #edf1ff;
+        color: var(--hero-color);
         padding: 5rem 1.5rem 4rem;
         position: relative;
         overflow: hidden;
