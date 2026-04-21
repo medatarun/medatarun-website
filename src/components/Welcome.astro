@@ -3,7 +3,11 @@ import Image from "astro/components/Image.astro";
 import logo from '../../public/favicon/web-app-manifest-512x512.png';
 import homepageSchema from "../assets/homepage-schema.svg"
 import imageWhy from "../assets/homepage-why-image.png"
-import imageAttributes from "../assets/homepage-attributes-sample.png"
+import imageAttributesNoTech from "../assets/homepage-screenshot-dag-entity-business.png"
+import imageAttributesWithTech from "../assets/homepage-screenshot-dag-entity-tech.png"
+import imageTypeSystem from "../assets/homepage-screenshot-dag-types.png"
+import imageParseDuration from "../assets/homepage-screenshot-dag-last-parse-duration.png"
+import ScreenshotCarousel from "./ScreenshotCarousel.astro";
 const resourceLinks = [
     {
         label: 'Documentation',
@@ -19,6 +23,28 @@ const resourceLinks = [
         label: 'Discord',
         href: 'https://discord.gg/MWcCuExQ3x',
         description: 'Discuss data models, use cases, and design decisions.'
+    }
+];
+const productScreenshots = [
+    {
+        src: imageAttributesNoTech,
+        alt: "Entity and attributes in Medatarun",
+        caption: "Business oriented understanding."
+    },
+    {
+        src: imageAttributesWithTech,
+        alt: "Entity and attributes without technical details",
+        caption: "Added technical details for who it matters."
+    },
+    {
+        src: imageParseDuration,
+        alt: "Details of an attribute",
+        caption: "Clear details of attribute usages and constraints."
+    },
+    {
+        src: imageTypeSystem,
+        alt: "Rich types",
+        caption: "Rich types, documented with usage and possible values."
     }
 ];
 
@@ -96,8 +122,7 @@ const resourceLinks = [
     </section>
 
     <div style="text-align:center; margin-left:auto; margin-right: auto; color:var(--hero-color); background:var(--hero-bg); padding:2em;">
-        <Image src={imageAttributes} style="border:1px solid #aaa; margin:2em; width:50%; height:auto;" alt="Uncomprehensive table columns" />
-        <div>Now, with Medatarun.</div>
+        <ScreenshotCarousel slides={productScreenshots} ariaLabel="Medatarun screenshots" />
     </div>
 
 
