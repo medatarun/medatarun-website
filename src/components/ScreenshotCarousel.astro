@@ -115,6 +115,12 @@ const { slides, ariaLabel = "Product screenshots" } = Astro.props;
         margin-top: 0.25rem;
     }
 
+    .screenshots-swiper::part(bullet) {
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid #edf1ff;
+        opacity: 1;
+    }
+
     .screenshots-swiper::part(bullet-active) {
         background: #edf1ff;
     }

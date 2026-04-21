@@ -3,7 +3,9 @@ import Image from "astro/components/Image.astro";
 import logo from '../../public/favicon/web-app-manifest-512x512.png';
 import homepageSchema from "../assets/homepage-schema.svg"
 import imageWhy from "../assets/homepage-why-image.png"
-import imageAttributes from "../assets/homepage-screenshot-dag-entity.png"
+import imageAttributesNoTech from "../assets/homepage-screenshot-dag-entity-business.png"
+import imageAttributesWithTech from "../assets/homepage-screenshot-dag-entity-tech.png"
+import imageTypeSystem from "../assets/homepage-screenshot-dag-types.png"
 import imageParseDuration from "../assets/homepage-screenshot-dag-last-parse-duration.png"
 import ScreenshotCarousel from "./ScreenshotCarousel.astro";
 const resourceLinks = [
@@ -25,14 +27,24 @@ const resourceLinks = [
 ];
 const productScreenshots = [
     {
-        src: imageAttributes,
+        src: imageAttributesNoTech,
         alt: "Entity and attributes in Medatarun",
-        caption: "Understand entities and their attributes."
+        caption: "Business oriented understanding."
+    },
+    {
+        src: imageAttributesWithTech,
+        alt: "Entity and attributes without technical details",
+        caption: "Added technical details for who it matters."
     },
     {
         src: imageParseDuration,
-        alt: "Execution metrics in Medatarun",
-        caption: "Inspect operational metrics directly in the model."
+        alt: "Details of an attribute",
+        caption: "Clear details of attribute usages and constraints."
+    },
+    {
+        src: imageTypeSystem,
+        alt: "Rich types",
+        caption: "Rich types, documented with usage and possible values."
     }
 ];
 
