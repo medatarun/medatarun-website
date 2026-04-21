@@ -3,7 +3,7 @@ import Image from "astro/components/Image.astro";
 import logo from '../../public/favicon/web-app-manifest-512x512.png';
 import homepageSchema from "../assets/homepage-schema.svg"
 import imageWhy from "../assets/homepage-why-image.png"
-import imageAttributes from "../assets/homepage-attributes-sample.png"
+import imageAttributes from "../assets/homepage-screenshot-dag-entity.png"
 const resourceLinks = [
     {
         label: 'Documentation',
@@ -96,8 +96,10 @@ const resourceLinks = [
     </section>
 
     <div style="text-align:center; margin-left:auto; margin-right: auto; color:var(--hero-color); background:var(--hero-bg); padding:2em;">
-        <Image src={imageAttributes} style="border:1px solid #aaa; margin:2em; width:50%; height:auto;" alt="Uncomprehensive table columns" />
-        <div>Now, with Medatarun.</div>
+        <Image src={imageAttributes} style="border:1px solid #aaa; margin:2em; width:50%; height:auto;" alt="Understand entity" />
+        <div>Understand the concepts.</div>
+        <Image src={imageAttributes} style="border:1px solid #aaa; margin:2em; width:50%; height:auto;" alt="Understand attributes" />
+        <div>Detailed attribute description.</div>
     </div>
 
 
