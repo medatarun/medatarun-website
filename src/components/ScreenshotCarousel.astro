@@ -1,8 +1,9 @@
 ---
 import type { ImageMetadata } from "astro";
 import "swiper/css";
+import "swiper/css/free-mode";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
+import "swiper/css/thumbs";
 import "photoswipe/style.css";
 
 interface Slide {
@@ -22,11 +23,8 @@ const { slides, ariaLabel = "Product screenshots" } = Astro.props;
 <div class="screenshots-carousel" data-screenshots-carousel>
     <swiper-container
             class="screenshots-swiper"
-            navigation="true"
-            pagination="true"
-            space-between="18"
-            slides-per-view="1"
-            keyboard="true"
+            data-main-swiper
+            init="false"
             aria-label={ariaLabel}
     >
         {slides.map((slide) => (
@@ -53,6 +51,25 @@ const { slides, ariaLabel = "Product screenshots" } = Astro.props;
                 </swiper-slide>
         ))}
     </swiper-container>
+
+    <swiper-container
+            class="screenshots-thumbs"
+            data-thumbs-swiper
+            init="false"
+            aria-label="Screenshot thumbnails"
+    >
+        {slides.map((slide) => (
+                <swiper-slide>
+                    <img
+                            src={slide.src.src}
+                            width={slide.src.width}
+                            height={slide.src.height}
+                            alt={slide.alt}
+                            loading="lazy"
+                    />
+                </swiper-slide>
+        ))}
+    </swiper-container>
 </div>
 
 <script>
@@ -62,6 +79,34 @@ const { slides, ariaLabel = "Product screenshots" } = Astro.props;
     register();
 
     document.querySelectorAll("[data-screenshots-carousel]").forEach((root) => {
+        const mainSwiper = root.querySelector("[data-main-swiper]");
+        const thumbsSwiper = root.querySelector("[data-thumbs-swiper]");
+
+        if (!mainSwiper || !thumbsSwiper) {
+            return;
+        }
+
+        Object.assign(thumbsSwiper, {
+            spaceBetween: 8,
+            freeMode: true,
+            watchSlidesProgress: true,
+            breakpoints: {
+                0: { slidesPerView: 4 },
+                640: { slidesPerView: 6 },
+                960: { slidesPerView: 8 }
+            }
+        });
+        thumbsSwiper.initialize();
+
+        Object.assign(mainSwiper, {
+            navigation: true,
+            keyboard: { enabled: true },
+            spaceBetween: 18,
+            slidesPerView: 1,
+            thumbs: { swiper: thumbsSwiper.swiper }
+        });
+        mainSwiper.initialize();
+
         const lightbox = new PhotoSwipeLightbox({
             gallery: root,
             children: ".screenshots-link",
@@ -110,18 +155,29 @@ const { slides, ariaLabel = "Product screenshots" } = Astro.props;
         color: #edf1ff;
     }
 
-    .screenshots-swiper::part(pagination) {
-        position: static;
-        margin-top: 0.25rem;
+    .screenshots-thumbs {
+        margin-top: 0.9rem;
+        max-width: min(72vw, 860px);
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    .screenshots-swiper::part(bullet) {
-        background: rgba(0, 0, 0, 0.35);
-        border: 1px solid #edf1ff;
+    .screenshots-thumbs swiper-slide {
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 8px;
+        overflow: hidden;
+        opacity: 0.65;
+        cursor: pointer;
+    }
+
+    .screenshots-thumbs .swiper-slide-thumb-active {
         opacity: 1;
+        border-color: #edf1ff;
     }
 
-    .screenshots-swiper::part(bullet-active) {
-        background: #edf1ff;
+    .screenshots-thumbs img {
+        display: block;
+        width: 100%;
+        height: auto;
     }
 </style>
