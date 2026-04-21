@@ -1,0 +1,121 @@
+---
+import type { ImageMetadata } from "astro";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "photoswipe/style.css";
+
+interface Slide {
+    src: ImageMetadata;
+    alt: string;
+    caption: string;
+}
+
+interface Props {
+    slides: Slide[];
+    ariaLabel?: string;
+}
+
+const { slides, ariaLabel = "Product screenshots" } = Astro.props;
+---
+
+<div class="screenshots-carousel" data-screenshots-carousel>
+    <swiper-container
+            class="screenshots-swiper"
+            navigation="true"
+            pagination="true"
+            space-between="18"
+            slides-per-view="1"
+            keyboard="true"
+            aria-label={ariaLabel}
+    >
+        {slides.map((slide) => (
+                <swiper-slide>
+                    <figure class="screenshots-slide">
+                        <a
+                                class="screenshots-link"
+                                href={slide.src.src}
+                                data-pswp-width={slide.src.width}
+                                data-pswp-height={slide.src.height}
+                                target="_blank"
+                                rel="noreferrer"
+                        >
+                            <img
+                                    src={slide.src.src}
+                                    width={slide.src.width}
+                                    height={slide.src.height}
+                                    alt={slide.alt}
+                                    loading="lazy"
+                            />
+                        </a>
+                        <figcaption>{slide.caption}</figcaption>
+                    </figure>
+                </swiper-slide>
+        ))}
+    </swiper-container>
+</div>
+
+<script>
+    import { register } from "swiper/element/bundle";
+    import PhotoSwipeLightbox from "photoswipe/lightbox";
+
+    register();
+
+    document.querySelectorAll("[data-screenshots-carousel]").forEach((root) => {
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: root,
+            children: ".screenshots-link",
+            pswpModule: () => import("photoswipe")
+        });
+
+        lightbox.init();
+    });
+</script>
+
+<style>
+    .screenshots-carousel {
+        max-width: 68rem;
+        margin: 0 auto;
+    }
+
+    .screenshots-slide {
+        margin: 0;
+        display: grid;
+        gap: 0.75rem;
+        justify-items: center;
+    }
+
+    .screenshots-link {
+        display: block;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 8px;
+        overflow: hidden;
+        max-width: min(72vw, 860px);
+        background: #14192a;
+    }
+
+    .screenshots-link img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .screenshots-slide figcaption {
+        color: var(--hero-color);
+        text-align: center;
+    }
+
+    .screenshots-swiper::part(button-prev),
+    .screenshots-swiper::part(button-next) {
+        color: #edf1ff;
+    }
+
+    .screenshots-swiper::part(pagination) {
+        position: static;
+        margin-top: 0.25rem;
+    }
+
+    .screenshots-swiper::part(bullet-active) {
+        background: #edf1ff;
+    }
+</style>

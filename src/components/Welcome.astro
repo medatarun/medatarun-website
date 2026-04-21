@@ -4,6 +4,8 @@ import logo from '../../public/favicon/web-app-manifest-512x512.png';
 import homepageSchema from "../assets/homepage-schema.svg"
 import imageWhy from "../assets/homepage-why-image.png"
 import imageAttributes from "../assets/homepage-screenshot-dag-entity.png"
+import imageParseDuration from "../assets/homepage-screenshot-dag-last-parse-duration.png"
+import ScreenshotCarousel from "./ScreenshotCarousel.astro";
 const resourceLinks = [
     {
         label: 'Documentation',
@@ -19,6 +21,18 @@ const resourceLinks = [
         label: 'Discord',
         href: 'https://discord.gg/MWcCuExQ3x',
         description: 'Discuss data models, use cases, and design decisions.'
+    }
+];
+const productScreenshots = [
+    {
+        src: imageAttributes,
+        alt: "Entity and attributes in Medatarun",
+        caption: "Understand entities and their attributes."
+    },
+    {
+        src: imageParseDuration,
+        alt: "Execution metrics in Medatarun",
+        caption: "Inspect operational metrics directly in the model."
     }
 ];
 
@@ -96,10 +110,7 @@ const resourceLinks = [
     </section>
 
     <div style="text-align:center; margin-left:auto; margin-right: auto; color:var(--hero-color); background:var(--hero-bg); padding:2em;">
-        <Image src={imageAttributes} style="border:1px solid #aaa; margin:2em; width:50%; height:auto;" alt="Understand entity" />
-        <div>Understand the concepts.</div>
-        <Image src={imageAttributes} style="border:1px solid #aaa; margin:2em; width:50%; height:auto;" alt="Understand attributes" />
-        <div>Detailed attribute description.</div>
+        <ScreenshotCarousel slides={productScreenshots} ariaLabel="Medatarun screenshots" />
     </div>
 
 
